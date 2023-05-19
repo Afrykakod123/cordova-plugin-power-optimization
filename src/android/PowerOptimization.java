@@ -96,6 +96,7 @@ public class PowerOptimization extends CordovaPlugin {
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.setData(Uri.parse("package:" + packageName));
                 context.startActivity(intent);
                 callbackContext.success();
@@ -122,6 +123,7 @@ public class PowerOptimization extends CordovaPlugin {
                 if (pm.isIgnoringBatteryOptimizations(packageName)){
                     intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     context.startActivity(intent);
                 }
 
@@ -189,6 +191,7 @@ public class PowerOptimization extends CordovaPlugin {
                 ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
                 intent.setAction(Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setData(Uri.parse("package:" + packageName));
                 context.startActivity(intent);
